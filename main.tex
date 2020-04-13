@@ -1,0 +1,57 @@
+\documentclass[
+	a4paper,
+	headings = standardclasses,
+	DIV = 14
+]{scrartcl}
+
+\usepackage{hyperref}
+
+% references:
+\usepackage[backend = biber]{biblatex}
+
+% abbreviations:
+\usepackage[acronym]{glossaries}
+
+% code snippets:
+\usepackage{listings}
+\usepackage[dvipsnames]{xcolor}
+\definecolor{ListingBackground}{HTML}{F8F8F8}
+\lstset{
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\color{blue}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  commentstyle=\color{green}\ttfamily,
+  morecomment=[l][\color{magenta}]{\#},
+  frame=single,			        % border settings
+  frameround=ffff,
+  rulecolor=\color{darkgray}, % border color,
+  captionpos=b,			% sets the caption-position to bottom
+  xleftmargin=10pt,		        % margin left
+  xrightmargin=5pt,		        % margin right
+}
+
+\makenoidxglossaries{}
+\input{acros.tex}
+\bibliography{bibliography.bib} 
+
+\title{Title}
+\subtitle{Subtitle}
+\date{\today}
+
+\author{TBD}
+
+\publishers{TBD}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\include{content}
+
+%\printglossaries{}
+\printnoidxglossary[type=\acronymtype,numberedsection=autolabel]
+\printbibliography{}
+
+\end{document}
