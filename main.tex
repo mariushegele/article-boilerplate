@@ -1,16 +1,33 @@
 \documentclass[
-	a4paper,
-	headings = standardclasses,
-	DIV = 14
+	pdftex,
+	oneside,  
+	12pt,			    % fontsize
+	parskip=half,		    % Space (in lines) between paragraphs
+	headheight = 14.5pt,    % Header hight
+	headsepline,		    % Line after header
+	footheight = 14.5pt,	    % Footer height
+	footsepline,		    % Line before footer
+	DIV=calc,		    % Calculate print space
+	headinclude=false,   % Exclude header from print space
+	footinclude=false,	    % Exclude footer from print space
+	listof=totoc,		    % Show List of Figures/Tables in Contents
+	toc=bibliography,	    % Show Bibliography in Contents
 ]{scrartcl}
 
 \usepackage{hyperref}
+\usepackage[german]{babel}
+\usepackage{lipsum}
 
 % references:
+\usepackage{csquotes}
 \usepackage[backend = biber]{biblatex}
+\addbibresource{bibliography.bib}
 
 % abbreviations:
 \usepackage[acronym]{glossaries}
+\makenoidxglossaries{}
+\input{acros.tex}
+
 
 % code snippets:
 \usepackage{listings}
@@ -30,28 +47,32 @@
   xrightmargin=5pt,		        % margin right
 }
 
-\makenoidxglossaries{}
-\input{acros.tex}
-\bibliography{bibliography.bib} 
+% page layout:
+\usepackage[headsepline,footsepline]{scrlayer-scrpage}
+\clearpairofpagestyles
+\ihead{Short Title Title}
+\ohead{Short author}
+\cfoot{\pagemark}
 
+% metadata:
 \title{Title}
-\subtitle{Subtitle}
 \date{\today}
+\author{Author}
+\publishers{Publisher}
+%\abstract{Abstract}
 
-\author{TBD}
-
-\publishers{TBD}
-
+% content:
 \begin{document}
-
 \maketitle
 
+\setcounter{tocdepth}{2}
 \tableofcontents
 
 \include{content}
 
-%\printglossaries{}
+\appendix
 \printnoidxglossary[type=\acronymtype,numberedsection=autolabel]
+\newpage
 \printbibliography{}
 
 \end{document}
